@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32120.378
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor-Excel-export", "Blazor-Excel-export\Blazor-Excel-export.csproj", "{E6A4E392-39A5-476F-8F5B-BA2D6FEAD693}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorExcelExport", "Blazor-Excel-export\BlazorExcelExport.csproj", "{E6A4E392-39A5-476F-8F5B-BA2D6FEAD693}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
