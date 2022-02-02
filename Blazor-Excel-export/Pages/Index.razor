@@ -37,7 +37,10 @@ else
         </tbody>
     </table>     
 
-    <button type="button" class="btn btn-success" @onclick="@ClickExportXLS">Export XLSX</button>
+    <button type="button" class="btn btn-success" @onclick="@ClickExportXLS">Create XLSX</button>
+    <br />
+    
+    <button type="button" class="btn btn-success" @onclick="@ClickTemplateXLS">Template XLSX</button>
 }
 
 @code {
@@ -49,11 +52,17 @@ else
     }
 
 
-
-
     private async void ClickExportXLS()
     {
         var xls = new Excel();
         await xls.GenerateWeatherForecastAsync(js, forecasts, "export.xlsx");
+    }
+
+    private async void ClickTemplateXLS()
+    {
+        Stream streamTemplate = await Http.GetStreamAsync("xls/template.xlsx");
+
+        var xls = new Excel();
+        await xls.TemplateWeatherForecastAsync(js, streamTemplate, forecasts, "export.xlsx");
     }
 }

@@ -3,7 +3,7 @@ using BlazorExcelExport.Models;
 
 namespace BlazorExcelExport.XLS;
 
-public class WeatherForecastPDF
+public class WeatherForecastXLS
 {
     public string Edition(WeatherForecast[] data)
     {
