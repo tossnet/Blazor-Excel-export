@@ -8,17 +8,16 @@ public class Excel
     public async Task GenerateWeatherForecastAsync(IJSRuntime js, WeatherForecast[] data, string filename = "export.xlsx")
     {
         var weatherForecast = new WeatherForecastXLS();
-        string XLSStream = weatherForecast.Edition(data);
+        var XLSStream = weatherForecast.Edition(data);
 
-        await js.InvokeVoidAsync("jsSaveAsFile", filename, XLSStream);
+        await js.InvokeVoidAsync("BlazorDownloadFile", filename, XLSStream);
     }
 
     public async Task TemplateWeatherForecastAsync(IJSRuntime js, Stream streamTemplate, WeatherForecast[] data, string filename = "export.xlsx")
     {
         var templateXLS = new UseTemplateXLS();
-        string XLSStream = templateXLS.Edition(streamTemplate,data);
+        var XLSStream = templateXLS.Edition(streamTemplate, data);
 
-        await js.InvokeVoidAsync("jsSaveAsFile", filename, XLSStream);
+        await js.InvokeVoidAsync("BlazorDownloadFile", filename, XLSStream);
     }
-
 }

@@ -5,10 +5,8 @@ namespace BlazorExcelExport.XLS;
 
 public class WeatherForecastXLS
 {
-    public string Edition(WeatherForecast[] data)
+    public byte[] Edition(WeatherForecast[] data)
     {
-        MemoryStream XLSStream = new();
-
         var wb = new XLWorkbook();
         wb.Properties.Author = "the Author";
         wb.Properties.Title = "the Title";
@@ -20,7 +18,6 @@ public class WeatherForecastXLS
         wb.Properties.LastModifiedBy = "the Last Modified By";
         wb.Properties.Company = "the Company";
         wb.Properties.Manager = "the Manager";
-
 
         var ws = wb.Worksheets.Add("Weather Forecast");
 
@@ -36,18 +33,16 @@ public class WeatherForecastXLS
 
         for (int row = 0; row < data.Length; row++)
         {
-
             // The apostrophe is to force ClosedXML to treat the date as a string
             ws.Cell(row + 1, 1).Value = "'" + data[row].Date.ToShortDateString();
-            ws.Cell(row + 1, 2).Value =  data[row].TemperatureC;
-            ws.Cell(row + 1, 3).Value =  data[row].TemperatureF;
+            ws.Cell(row + 1, 2).Value = data[row].TemperatureC;
+            ws.Cell(row + 1, 3).Value = data[row].TemperatureF;
             ws.Cell(row + 1, 4).Value = data[row].Summary;
         }
 
-
+        MemoryStream XLSStream = new();
         wb.SaveAs(XLSStream);
 
-
-        return Convert.ToBase64String(XLSStream.ToArray());
+        return XLSStream.ToArray();
     }
 }

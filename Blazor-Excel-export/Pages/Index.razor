@@ -37,10 +37,11 @@ else
         </tbody>
     </table>     
 
+    <br />        
     <button type="button" class="btn btn-success" @onclick="@ClickExportXLS">Create XLSX</button>
     <br />
     
-    <button type="button" class="btn btn-success" @onclick="@ClickTemplateXLS">Template XLSX</button>
+    <button type="button" class="btn btn-success" @onclick="@ClickTemplateXLS">Template XLSX</button>     
 }
 
 @code {
@@ -50,8 +51,7 @@ else
     {
         forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
     }
-
-
+          
     private async void ClickExportXLS()
     {
         var xls = new Excel();
@@ -63,6 +63,6 @@ else
         Stream streamTemplate = await Http.GetStreamAsync("xls/template.xlsx");
 
         var xls = new Excel();
-        await xls.TemplateWeatherForecastAsync(js, streamTemplate, forecasts, "export.xlsx");
+        await xls.TemplateWeatherForecastAsync(js, streamTemplate, forecasts, "template.xlsx");
     }
 }

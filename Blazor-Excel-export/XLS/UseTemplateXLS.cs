@@ -5,9 +5,9 @@ namespace BlazorExcelExport.XLS;
 
 public class UseTemplateXLS
 {
-    public string Edition(Stream streamTemplate, WeatherForecast[] data)
+    public byte[] Edition(Stream streamTemplate, WeatherForecast[] data)
     {
-        var template = new  XLTemplate(streamTemplate);
+        var template = new XLTemplate(streamTemplate);
 
         template.AddVariable("WeatherForecasts", data);
         template.Generate();
@@ -16,7 +16,6 @@ public class UseTemplateXLS
         template.SaveAs(XLSStream);
 
 
-        return Convert.ToBase64String(XLSStream.ToArray());
+        return XLSStream.ToArray();
     }
-
 }
