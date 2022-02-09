@@ -1,5 +1,7 @@
 Blazor-Excel-export
 
+Article on my blog : https://www.peug.net/en/blazor-create-or-export-your-data-to-excel/ 
+
 ![blazor excel export](https://user-images.githubusercontent.com/3845786/152016618-1aad643c-649a-41fb-afaa-8713023734df.png)
 
 I used here the nugets package https://github.com/ClosedXML
