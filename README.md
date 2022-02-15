@@ -5,7 +5,6 @@ Article on my blog : https://www.peug.net/en/blazor-create-or-export-your-data-t
 ![blazor excel export](https://user-images.githubusercontent.com/3845786/152016618-1aad643c-649a-41fb-afaa-8713023734df.png)
 
 
-https://user-images.githubusercontent.com/3845786/152327358-ec77cd70-3a09-4e10-a66d-9886266119ce.mp4
 
 ### Method 1 : Creation of a file in XLS format
 
@@ -72,3 +71,6 @@ template.AddVariable("name", "christophe");
 ```
 
 There is quite a lot of documentation on these libraries: https://closedxml.github.io/ClosedXML.Report/docs/en/index
+
+
+https://user-images.githubusercontent.com/3845786/152327358-ec77cd70-3a09-4e10-a66d-9886266119ce.mp4
