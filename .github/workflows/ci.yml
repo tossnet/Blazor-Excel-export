@@ -19,7 +19,9 @@ jobs:
           submodules: true
           
       - name: Publish
-        run: dotnet publish  -c Release
+        run:  |
+            cp wwwroot/index.html wwwroot/404.html
+            dotnet publish  -c Release
 
       - name: GitHub Pages action
         if: ${{ github.ref == 'refs/heads/master' }}
