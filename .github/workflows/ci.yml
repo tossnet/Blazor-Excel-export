@@ -19,7 +19,7 @@ jobs:
           submodules: true
           
       - name: Publish
-        run: dotnet publish /BlazorExcelExport/BlazorExcelExport.csproj -c Release
+        run: dotnet publish  -c Release
 
       - name: GitHub Pages action
         if: ${{ github.ref == 'refs/heads/master' }}
