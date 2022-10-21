@@ -1,0 +1,34 @@
+name: 'Publish application'
+on:
+  push:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build_and_deploy_job:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+    runs-on: ubuntu-latest
+    name: Build and Deploy Job
+    steps:
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '6.0.x'
+    
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+          
+      - name: Publish
+        run: 
+            dotnet publish  -c Release
+
+      - name: GitHub Pages action
+        if: ${{ github.ref == 'refs/heads/master' }}
+        uses: peaceiris/actions-gh-pages@v3.8.0
+        with:
+            github_token: ${{ secrets.PUBLISH_TOKEN }}
+            publish_branch: gh-pages
+            publish_dir: bin/Release/net6.0/publish/wwwroot
+            allow_empty_commit: false
+            keep_files: false
+            force_orphan: true
