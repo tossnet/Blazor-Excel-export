@@ -23,7 +23,7 @@ jobs:
             dotnet publish  -c Release -o release
       
       - name: Change base-tag in index.html to Blazor-Excel-export
-        run: sed -i's/<base href="/\" \/>/<base href="\/Blazor-Excel-export\/" \/>g' release/wwwroot/index.html
+        run: sed -i 's/<base href="/\" \/>/<base href="\/Blazor-Excel-export\/" \/>/g' release/wwwroot/index.html
         
       - name: copy index.html to 404.html
         run: cp release/wwwroot/index.html release/wwwroot/404.html
