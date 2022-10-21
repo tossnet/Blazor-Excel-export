@@ -1,25 +1,30 @@
 name: 'Publish application'
-on: push
+on:
+  push:
+  pull_request:
+    branches: [ main ]
 
 jobs:
-  build:
+  build_and_deploy_job:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
+    name: Build and Deploy Job
     steps:
-        - uses: actions/checkout@v2
-        - name: Setup .NET Core
-          uses: actions/setup-dotnet@v3
-          with:
-            dotnet-version: '6.0.x'
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '6.0.x'
+    
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+          
+      - name: Publish
+        run: dotnet publish BlazorExcelExport.csproj -c Release -o website
 
-        # Generate the website
-        - name: Publish
-          run: dotnet publish myapp.csproj --configuration Release
-
-        # Publish the website
-        - name: GitHub Pages action
-          if: ${{ github.ref == 'refs/heads/master' }} # Publish only when the push is on master
-          uses: peaceiris/actions-gh-pages@v3.6.1
-          with:
+      - name: GitHub Pages action
+        if: ${{ github.ref == 'refs/heads/master' }}
+        uses: peaceiris/actions-gh-pages@v3.8.0
+        with:
             github_token: ${{ secrets.PUBLISH_TOKEN }}
             publish_branch: gh-pages
             publish_dir: bin/Release/net6.0/publish/wwwroot
