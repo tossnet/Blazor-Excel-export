@@ -6,14 +6,15 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>BlazorExcelExport</AssemblyName>
     <RootNamespace>BlazorExcelExport</RootNamespace>
+	<Authors>Christophe Peugnet</Authors>
   </PropertyGroup>
 
 
   <ItemGroup>
     <PackageReference Include="ClosedXML" Version="0.95.4" />
     <PackageReference Include="ClosedXML.Report" Version="0.2.4" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.1" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.10" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>

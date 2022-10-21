@@ -38,10 +38,15 @@ else
     </table>     
 
     <br />        
-    <button type="button" class="btn btn-success" @onclick="@ClickExportXLS">Create XLSX</button>
+    <button type="button" class="btn btn-success mb-2" @onclick="@ClickExportXLS">Create XLSX</button>
+	
     <br />
-    
-    <button type="button" class="btn btn-success" @onclick="@ClickTemplateXLS">Template XLSX</button>     
+
+    <button type="button" class="btn btn-success mb-2" @onclick="@ClickTemplateXLS">Template XLSX</button>
+	
+    <br />
+
+    <button type="button" class="btn btn-success mb-2" @onclick="@ClickApplyTemplateExistingFileXLS">Apply Template on a existing file XLSX</button>
 }
 
 @code {
@@ -51,7 +56,7 @@ else
     {
         forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
     }
-          
+
     private async void ClickExportXLS()
     {
         var xls = new Excel();
@@ -60,9 +65,25 @@ else
 
     private async void ClickTemplateXLS()
     {
-        Stream streamTemplate = await Http.GetStreamAsync("xls/template.xlsx");
+        Stream streamTemplate = await Http.GetStreamAsync("xls/template2.xlsx");
 
         var xls = new Excel();
         await xls.TemplateWeatherForecastAsync(js, streamTemplate, forecasts, "template.xlsx");
     }
+
+	[Inject]
+    public HttpClient _client { get; set; }
+	
+    private async void ClickApplyTemplateExistingFileXLS()
+    {
+        Stream streamTemplate = await Http.GetStreamAsync("xls/template.xlsx");
+
+        var xls = new Excel();
+        await xls.TemplateOnExistingFileAsync(_client, 
+                                              js, 
+                                              streamTemplate, 
+                                              forecasts, 
+                                              @"xls\Existing_File.xlsx");
+    }
+    
 }
