@@ -5,18 +5,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-        # Checkout the code
         - uses: actions/checkout@v2
-
-        # Install .NET Core SDK
         - name: Setup .NET Core
-          uses: actions/setup-dotnet@v2
+          uses: actions/setup-dotnet@v3
           with:
             dotnet-version: '6.0.x'
-
-        # Run tests
-        - name: Test
-          run: dotnet test
 
         # Generate the website
         - name: Publish
