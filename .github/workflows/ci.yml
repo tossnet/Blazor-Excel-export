@@ -7,26 +7,24 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
+      - uses: actions/checkout@v2
+      
       - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '6.0.x'
-    
-      - uses: actions/checkout@v2
-        with:
-          submodules: true
-          
+   
       - name: Publish
         run: 
             dotnet publish Blazor-Excel-export/BlazorExcelExport.csproj --configuration Release
 
       - name: Deploy GitHub Pages action
         if: ${{ github.ref == 'refs/heads/master' }}
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v3.6.1
         with:
             github_token: ${{ secrets.PUBLISH_TOKEN }}
             publish_branch: gh-pages
-            publish_dir: ./public/wwwroot
-            ## publish_dir: bin/Release/net6.0/publish/wwwroot
+            ## publish_dir: ./public/wwwroot
+            publish_dir: bin/Release/net6.0/publish/wwwroot
             allow_empty_commit: false
             keep_files: false
             force_orphan: true
