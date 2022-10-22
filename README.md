@@ -1,4 +1,6 @@
-Blazor-Excel-export
+# Blazor Excel export
+
+DEMO : https://tossnet.github.io/Blazor-Excel-export/
 
 Article on my blog : https://www.peug.net/en/blazor-create-or-export-your-data-to-excel/ 
 
