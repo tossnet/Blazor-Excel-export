@@ -20,7 +20,7 @@ jobs:
           
       - name: Publish
         run: 
-            dotnet publish  -c Release -o release
+            dotnet publish Blazor-Excel-export/BlazorExcelExport.csproj -c Release -o release
       
       - name: Change base-tag in index.html to Blazor-Excel-export
         run: sed -i 's/<base href="\/" \/>/<base href="\/Blazor-Excel-export\/" \/>/g' release/wwwroot/index.html
@@ -31,13 +31,14 @@ jobs:
       - name: Add .nojekyll file
         run: touch release/wwwroot/.nojekyll
 
-      - name: GitHub Pages action
+      - name: Deploy GitHub Pages action
         if: ${{ github.ref == 'refs/heads/master' }}
-        uses: peaceiris/actions-gh-pages@v3.6.1
+        uses: peaceiris/actions-gh-pages@v3
         with:
             github_token: ${{ secrets.PUBLISH_TOKEN }}
             publish_branch: gh-pages
-            publish_dir: ./public
+            publish_dir: ./public/wwwroot
+            ## publish_dir: bin/Release/net6.0/publish/wwwroot
             allow_empty_commit: false
             keep_files: false
             force_orphan: true
