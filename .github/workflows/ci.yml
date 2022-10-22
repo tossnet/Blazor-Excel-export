@@ -33,13 +33,11 @@ jobs:
 
       - name: GitHub Pages action
         if: ${{ github.ref == 'refs/heads/master' }}
-        uses: peaceiris/actions-gh-pages@v3.8.0
+        uses: peaceiris/actions-gh-pages@v3
         with:
             github_token: ${{ secrets.PUBLISH_TOKEN }}
-            BRANCH: gh-pages
-            FOLDER: release/wwwroot
-            ## publish_branch: gh-pages
-            ## publish_dir: bin/Release/net6.0/publish/wwwroot
-            ## allow_empty_commit: false
-            ## keep_files: false
-            ## force_orphan: true
+            publish_branch: gh-pages
+            publish_dir: bin/Release/net6.0/publish/wwwroot
+            allow_empty_commit: false
+            keep_files: false
+            force_orphan: true
