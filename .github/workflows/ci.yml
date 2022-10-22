@@ -17,6 +17,9 @@ jobs:
         run: 
             dotnet publish Blazor-Excel-export/BlazorExcelExport.csproj --configuration Release
 
+      - name: Change base-tag in index.html to Blazor-Excel-export
+        run: sed -i 's/<base href="\/" \/>/<base href="\/Blazor-Excel-export\/" \/>/g' /Blazor-Excel-export/bin/Release/net6.0/wwwroot/index.html
+        
       - name: Deploy GitHub Pages action
         if: ${{ github.ref == 'refs/heads/master' }}
         uses: peaceiris/actions-gh-pages@v3.6.1
@@ -28,6 +31,3 @@ jobs:
             allow_empty_commit: false
             keep_files: false
             force_orphan: true
-
-      - name: Change base-tag in index.html to Blazor-Excel-export
-        run: sed -i 's/<base href="\/" \/>/<base href="\/Blazor-Excel-export\/" \/>/g' release/wwwroot/index.html
